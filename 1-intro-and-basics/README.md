@@ -10,7 +10,7 @@
     - string
     - boolean
     - number
-- Type Inference (implicit)
+- Type Inference
 - any
 - Array & Tuple
 - Object
@@ -255,6 +255,15 @@ let myObject: Person = { name: 'Daniel', age: 34 };
 // let myObject: { name: string; age: number } = { name: 'Daniel', age: 34 };
 ```
 
+Fields in `interface` can be set as `optional` adding a `?` as a suffix.
+
+```typescript
+interface Person {
+  name: string;
+  age?: number // <- now "age" is not mandatory 
+}
+```
+
 ### Function
 
 [Docs](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions),
@@ -269,6 +278,28 @@ function greet(name: string): void {
 
 // or
 const greet2 = (name: string): void => {
+  console.log("Hello, " + name.toUpperCase() + "!!");
+}
+```
+
+#### optional parameters
+
+`function`'s parameter can be set as `optional` adding a `?` as a suffix.
+
+```typescript
+function greet(name?: string): void {
+  const myName = name ? name : 'Daniel'
+  console.log("Hello, " + myName.toUpperCase() + "!!");
+}
+```
+
+#### default values
+
+A **default value** can be added to a parameter with an `=` and a default value.
+
+```typescript
+
+function greet(name = 'Daniel'): void {
   console.log("Hello, " + name.toUpperCase() + "!!");
 }
 ```
