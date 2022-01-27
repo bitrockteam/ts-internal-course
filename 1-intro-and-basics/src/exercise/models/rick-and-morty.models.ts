@@ -16,7 +16,7 @@ export interface CharactersResponse {
 }
 
 export interface Character {
-  id: 1;
+  id: number;
   name: string;
   status: string;
   species: string;
@@ -30,8 +30,18 @@ export interface Character {
   created: string; // ISO Date
 }
 
-/*export interface ServerResponse<T> {
+export interface CharacterSummary {
+  name: string;
+  species: string;
+  episodesCount: number;
+}
+
+/*
+export interface ServerResponse<T> {
   info: Info;
   results: Array<T>;
-}*/
+}
 
+export type CharacterSummary = Pick<Character,'name'|'species'> & {
+  episodeCount: number;
+}*/
