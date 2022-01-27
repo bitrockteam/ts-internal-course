@@ -1,9 +1,10 @@
 import fetch, { Response } from 'node-fetch';
 import { CharactersResponse } from '../models/rick-and-morty.models';
 
-export const getCharacters = async (): Promise<CharactersResponse> => {
+export const getCharacters = async (page?: number): Promise<CharactersResponse> => {
   try {
-    const response: Response = await fetch('https://rickandmortyapi.com/api/character');
+    const queryParams = page ? `?page=${page}` : '';
+    const response: Response = await fetch(`https://rickandmortyapi.com/api/character${queryParams}`);
     if(!response.ok) {
       console.error(`Error on response: "${ response.statusText }"`);
       return { results: [] };
