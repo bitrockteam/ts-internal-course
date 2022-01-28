@@ -10,7 +10,9 @@
     "start": "node ./dist/index.js",
     "build-and-start": "npm run build && npm run start",
     "exercise:start": "node ./dist/exercise/index.js",
-    "exercise:build-and-start": "npm run build && npm run exercise:start"
+    "exercise:build-and-start": "npm run build && npm run exercise:start",
+    "bonus-point:start": "node ./dist/bonus-point/index.js",
+    "bonus-point:build-and-start": "npm run build && npm run bonus-point:start"
   },
   "keywords": [
     "typescript"
