@@ -7,9 +7,9 @@
 ## Summary
 
 - Primitive types
-    - string
-    - boolean
-    - number
+  - string
+  - boolean
+  - number
 - Type Inference
 - any
 - Array & Tuple
@@ -22,9 +22,9 @@
 - Init project `npm init`
 - Install typescript package `npm install --save-dev typescript` | `npm i -D typescript`
 - optional steps:
-    - `git init`
-    - `touch .gitignore`
-    - `echo 'node_modules' >> .gitignore`
+  - `git init`
+  - `touch .gitignore`
+  - `echo 'node_modules' >> .gitignore`
 
 ### File compilation (`tsc` cli)
 
@@ -32,8 +32,8 @@
 
 ```typescript
 // index.ts
-const message = 'Hello!'
-console.log(message)
+const message = "Hello!";
+console.log(message);
 ```
 
 - Compile index.ts into index.js using tsc (default target ES3)
@@ -44,8 +44,8 @@ Result:
 
 ```javascript
 // index.js
-var message = 'Hello!'
-console.log(message)
+var message = "Hello!";
+console.log(message);
 ```
 
 - `tsc --target ES6 index.ts`
@@ -54,8 +54,8 @@ Result:
 
 ```javascript
 // index.js
-const message = 'Hello!'
-console.log(message)
+const message = "Hello!";
+console.log(message);
 ```
 
 #### tsconfig.json
@@ -67,13 +67,11 @@ It's the default configuration file for `tsc` cli
 ```json5
 // tsconfig.json
 {
-  "compilerOptions": {
-    "target": "es5"
+  compilerOptions: {
+    target: "es5",
     // The most common target for browsers
   },
-  "exclude": [
-    "node_modules"
-  ]
+  exclude: ["node_modules"],
 }
 ```
 
@@ -83,28 +81,25 @@ Result:
 
 ```javascript
 // index.js
-const message = 'Hello!'
-console.log(message)
+const message = "Hello!";
+console.log(message);
 ```
 
 - A common `tsconfig.json` file:
 
 ```json5
 {
-  "compilerOptions": {
-    "target": "ES5",
-    "sourceMap": true,
-    "module": "CommonJS",
+  compilerOptions: {
+    target: "ES5",
+    sourceMap: true,
+    module: "CommonJS",
     // ES6, AMD, System, ...
-    "outDir": "dist",
-    "rootDir": "src",
-    "watch": true
+    outDir: "dist",
+    rootDir: "src",
+    watch: true,
   },
-  "exclude": [
-    "node_modules"
-  ]
+  exclude: ["node_modules"],
 }
-
 ```
 
 - More info on typescript configuration file => https://www.typescriptlang.org/docs/handbook/compiler-options.html
@@ -112,10 +107,9 @@ console.log(message)
 ### Importing files
 
 ```typescript
-import { message } from './constants.models';
+import { message } from "./constants.models";
 
 console.log(message);
-
 ```
 
 ### Importing 3rd party libraries
@@ -123,13 +117,12 @@ console.log(message);
 Let's import [date-fns](https://www.npmjs.com/package/date-fns)
 
 ```typescript
-import { format } from 'date-fns'; // Treeshakeable
+import { format } from "date-fns"; // Treeshakeable
 // import * as dateFns from 'date-fns'; // Non-Treeshakeable
 
 const message = format(new Date(), "'Today is a' eeee");
 // const message = dateFns.format(new Date(), "'Today is a' eeee");
 console.log(message);
-
 ```
 
 Modern libraries have their own type definition inside their own package, but if it's missing we can use the
@@ -142,11 +135,11 @@ the "source" definition:
 - `DT` DefinitelyTyped: The project has been written in JavaScript and the type definition can be found on
   DefinitelyTyped repo (e.g. `@types/{npmProjectName}`)
 
-*TypeScript*
+_TypeScript_
 
 - Install 3rd party library as usual `npm install date-fns`
 
-*DefinitelyTyped*
+_DefinitelyTyped_
 
 - Install 3rd party library as usual `npm install lodash`
 - Install type definition `npm install --save-dev @types/lodash`
@@ -168,19 +161,19 @@ Primitive types in TypeScript are:
 
 ```typescript
 let name: string;
-name = 'Daniel';
-name = String('Daniel');
+name = "Daniel";
+name = String("Daniel");
 name = 2; // Error
 
 let age: number;
 age = 34;
 age = Number(34);
-name = { me: 'Daniel' }; // Error
+name = { me: "Daniel" }; // Error
 
 let isMale: boolean;
 isMale = true;
 isMale = Boolean(true);
-isMale = 'yes'; // Error
+isMale = "yes"; // Error
 ```
 
 ### Type Inference
@@ -188,10 +181,9 @@ isMale = 'yes'; // Error
 [Docs](https://www.typescriptlang.org/docs/handbook/type-inference.html)
 
 ```typescript
-let name = 'Daniel';
+let name = "Daniel";
 let age = 32;
 let isMale = true;
-
 ```
 
 ### any
@@ -208,8 +200,8 @@ of code is okay.
 
 ```typescript
 let myVariable: any = 2;
-myVariable = 'Test';
-myVariable = { name: 'Daniel' };
+myVariable = "Test";
+myVariable = { name: "Daniel" };
 ```
 
 See also [noImplicitAny](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#noimplicitany)
@@ -219,11 +211,10 @@ See also [noImplicitAny](https://www.typescriptlang.org/docs/handbook/2/basic-ty
 [Docs](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays)
 
 ```typescript
-let myNumberArray: Array<number> = [1, 2, 3]
-let myStringArray: Array<any> = ['One', 'Two', 'Three']
-let myTuple: [number, boolean, number, string] = [2, true, 1, 'Daniel']
-let myDynamicTuple: [number, ...string] = [1, 'Daniel', 'Mario', 'Luigi']
-
+let myNumberArray: Array<number> = [1, 2, 3];
+let myStringArray: Array<any> = ["One", "Two", "Three"];
+let myTuple: [number, boolean, number, string] = [2, true, 1, "Daniel"];
+let myDynamicTuple: [number, ...string] = [1, "Daniel", "Mario", "Luigi"];
 ```
 
 ### Object
@@ -233,10 +224,10 @@ let myDynamicTuple: [number, ...string] = [1, 'Daniel', 'Mario', 'Luigi']
 ```typescript
 let myObject: {
   name: string;
-  age: number
+  age: number;
 };
 
-myObjetc = { name: 'Daniel', age: 34 };
+myObjetc = { name: "Daniel", age: 34 };
 ```
 
 ### Interface (intro)
@@ -248,10 +239,10 @@ An `interface` declaration is another way to name an object type and to make it 
 ```typescript
 interface Person {
   name: string;
-  age: number
+  age: number;
 }
 
-let myObject: Person = { name: 'Daniel', age: 34 };
+let myObject: Person = { name: "Daniel", age: 34 };
 // let myObject: { name: string; age: number } = { name: 'Daniel', age: 34 };
 ```
 
@@ -260,7 +251,7 @@ Fields in `interface` can be set as `optional` adding a `?` as a suffix.
 ```typescript
 interface Person {
   name: string;
-  age?: number // <- now "age" is not mandatory 
+  age?: number; // <- now "age" is not mandatory
 }
 ```
 
@@ -279,7 +270,7 @@ function greet(name: string): void {
 // or
 const greet2 = (name: string): void => {
   console.log("Hello, " + name.toUpperCase() + "!!");
-}
+};
 ```
 
 #### optional parameters
@@ -288,7 +279,7 @@ const greet2 = (name: string): void => {
 
 ```typescript
 function greet(name?: string): void {
-  const myName = name ? name : 'Daniel'
+  const myName = name ? name : "Daniel";
   console.log("Hello, " + myName.toUpperCase() + "!!");
 }
 ```
@@ -298,8 +289,7 @@ function greet(name?: string): void {
 A **default value** can be added to a parameter with an `=` and a default value.
 
 ```typescript
-
-function greet(name = 'Daniel'): void {
+function greet(name = "Daniel"): void {
   console.log("Hello, " + name.toUpperCase() + "!!");
 }
 ```
@@ -308,27 +298,27 @@ function greet(name = 'Daniel'): void {
 
 ```typescript
 function getFullName(name: string, surname: string): string {
-  return `${ name } ${ surname }`
+  return `${name} ${surname}`;
 }
 
 function getFullName(obj: { name: string; surname: string }): string {
-  return `${ name } ${ surname }`
+  return `${name} ${surname}`;
 }
 
 interface Person {
   name: string;
-  surname: string
-};
+  surname: string;
+}
 
 function getFullName(obj: Person): Person {
-  return `${ name } ${ surname }`
+  return `${name} ${surname}`;
 }
 
 function getPersonByNameAndSurname(name: string, surname: string): Person {
   return {
     nane,
-    surname
-  }
+    surname,
+  };
 }
 ```
 
@@ -336,20 +326,19 @@ function getPersonByNameAndSurname(name: string, surname: string): Person {
 
 ```typescript
 function getFullName(obj: Person): Person {
-  return `${ name } ${ surname }`
+  return `${name} ${surname}`;
 }
 
 function sum(a: number, b: number): number {
   return a + b;
 }
 
-let sumFunction: (a: number, b: number) => number
+let sumFunction: (a: number, b: number) => number;
 sumFunction = sum;
 sumFunction = getFullName; // Error
 
 let mySum: (a: number, b: number) => number;
 mySum = (a: number, b: number): number => a + b;
-
 ```
 
 ## Exercise
@@ -371,18 +360,16 @@ NB: If pagination is difficult to manage, get all characters of first page only.
 
 ```json5
 {
-  "compilerOptions": {
-    "target": "ES2021",
-    "module": "ES2022",
-    "outDir": "dist",
-    "rootDir": "src",
-    "moduleResolution": "node"
+  compilerOptions: {
+    target: "ES2021",
+    module: "ES2022",
+    outDir: "dist",
+    rootDir: "src",
+    moduleResolution: "node",
     //    "sourceMap": true,
     //    "watch": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  exclude: ["node_modules"],
 }
 ```
 
@@ -392,6 +379,14 @@ NB: If pagination is difficult to manage, get all characters of first page only.
 - [ESM](https://nodejs.org/api/esm.html)
 
 ## Next(?)
+
+### Bonus point
+
+Add the capability to request a specific page and list the first 15 pages of characters with the previous format.
+
+### Extra bonus point
+
+Use a generator to do the previous task 😏
 
 ### unknown
 
