@@ -1,4 +1,4 @@
-# Lesson 2 - Interfaces, type Aliases, enum, classes
+# Lesson 2 - Interfaces, Type Aliases, enum, classes
 
 - Author: [Yi Zhang](mailto:yi.zhang@bitrock.it)
 
@@ -7,11 +7,11 @@
 ## Summary
 
 - Interfaces
-- type Aliases
-- enum
+- Type Aliases
+- Enumeration
 - classes
 
-## Interfaces (intro)
+## Interfaces
 
 [Docs](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces)
 
@@ -214,6 +214,7 @@ In modern TypeScript, you may not need an enum when an object with as const coul
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
 
 ```typescript
+// non viene compilato in js
 const enum EDirection {
   Up,
   Down,
@@ -228,3 +229,128 @@ const ODirection = {
   Right: 3
 } as const;
 ```
+
+### Classes
+
+```typescript
+class MessageLogger {
+  message: string;
+  private status = "Active";
+  constructor(message: string) {
+    this.message = message;
+  }
+
+  logMessage = () => {
+    console.log(this.message);
+  };
+
+  logStatus() {
+    console.log(this.status);
+  }
+  static staticCogStatus = () => {
+    console.log(this.status);
+  };
+}
+
+// This will log the `"Oh my!"` message as expected
+setInterval(new MessageLogger("Oh my!").logMessage);
+```
+
+### Classes and Interfaces
+
+```typescript
+interface Animal {
+  name: string;
+  move(distance: number): void;
+}
+
+class Zebra implements Animal {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  move(distance: number) {
+    console.log(`Moving: ${distance}`);
+  }
+}
+```
+
+Multiple Interfaces
+
+```ts
+interface HasArray {
+  numbers: number[];
+}
+
+interface HasFunction {
+  getString: () => string;
+}
+
+class Placeholder implements HasArray, HasFunction {
+  numbers: number[];
+
+  constructor(numbers: number[]) {
+    this.numbers = numbers;
+  }
+
+  getString() {
+    return this.numbers.join(", ");
+  }
+}
+
+class Empty implements HasArray, HasFunction {}
+```
+
+### Class Extensions
+
+TypeScript adds type checking onto the JavaScript concept of classes extending other classes. To start, any method or property declared on a base class will be available on the derived class.
+
+```ts
+class Base {
+  onBase() {
+    console.log("Hey!");
+  }
+}
+
+class Sub extends Base {
+  onSub() {
+    console.log("You!");
+  }
+}
+
+const sub = new Sub();
+sub.onBase(); // Ok (defined on base)
+sub.onSub(); // Ok (defined on derived)
+
+class NeedsString {
+  constructor(input: string) {
+    console.log(`Received: ${input}`);
+  }
+}
+
+class DerivedCorrect extends NeedsString {
+  constructor() {
+    super("Correct!");
+    // super must be called before property assignment
+  }
+}
+
+class DerivedIncorrect extends NeedsString {
+  constructor() {}
+  // ~~~~~~~~~~~~~~~~~
+  // Error: Constructors for derived classes must contain a 'super' call.
+}
+```
+
+### Exercise:
+
+Create a Class in order to manage API calls created in the previous lesson and visualize a list of info in che CLI.
+
+1. Create a inteface or interfaces to describe the class
+2. Create a class using the interface/s as model
+3. Store the data from API Call in property
+4. Visualize in CLI the list of character names using a method
+
+extra:

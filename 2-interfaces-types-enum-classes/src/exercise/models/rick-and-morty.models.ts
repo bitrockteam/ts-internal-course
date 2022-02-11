@@ -23,7 +23,7 @@ export interface Character {
   type: string;
   gender: string;
   origin: UrlInfo;
-  location: UrlInfo;
+  location:UrlInfo;
   image: string;
   episode: Array<string>;
   url: string;
