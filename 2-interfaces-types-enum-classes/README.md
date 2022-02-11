@@ -39,7 +39,7 @@ interface Person {
 ### Good To Know
 
 1. Interfaces, like type annotations, are not compiled to the output JavaScript. They exist purely in the TypeScript type system.
-2. it possible to make a property read only using the modifier `readonly`
+2. it is possible to make a property read only using the modifier `readonly`
 
 ```typescript
 interface Messenger {
@@ -348,9 +348,11 @@ class DerivedIncorrect extends NeedsString {
 
 Create a Class in order to manage API calls created in the previous lesson and visualize a list of info in che CLI.
 
-1. Create a inteface or interfaces to describe the class
+1. Create an interface or interfaces to describe the class
 2. Create a class using the interface/s as model
 3. Store the data from API Call in property
 4. Visualize in CLI the list of character names using a method
 
-extra:
+extra: 
+- Create a base class to manage the API call
+- Create 3 classes (one for each API endpoint) that implement the base class 
