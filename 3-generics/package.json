@@ -15,7 +15,7 @@
   "keywords": [
     "typescript"
   ],
-  "author": "Yi Zhang",
+  "author": "Federico Muzzo",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.12",
